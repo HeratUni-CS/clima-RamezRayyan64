@@ -1,3 +1,4 @@
+import 'package:clima/widgets/icon_button_widgets/icon_button_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:clima/utilities/constants.dart';
 
@@ -23,24 +24,21 @@ class _CityScreenState extends State<CityScreen> {
             fit: BoxFit.cover,
           ),
         ),
-        constraints: const BoxConstraints.expand(),
         child: SafeArea(
           child: Column(
-            children: <Widget>[
+            children: [
               Align(
                 alignment: Alignment.topLeft,
-                child: TextButton(
+                child: IconButtonWidget(
                   onPressed: () {
                     Navigator.pop(context);
                   },
-                  child: const Icon(
-                    Icons.arrow_back_ios,
-                    size: 50.0,
-                  ),
+                  icon: Icons.arrow_back_ios,
                 ),
               ),
               Container(
-                padding: const EdgeInsets.all(20.0),
+                padding:
+                    const EdgeInsets.symmetric(horizontal: 20, vertical: 30),
                 child: TextField(
                   style: const TextStyle(
                     color: Colors.black,
