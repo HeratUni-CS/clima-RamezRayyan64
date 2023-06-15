@@ -50,34 +50,27 @@ class _LocationScreenState extends State<LocationScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       body: Container(
-        decoration: BoxDecoration(
+        decoration: const BoxDecoration(
           image: DecorationImage(
-            image: const AssetImage('images/location_background.jpg'),
+            image: AssetImage('images/location_background.jpg'),
             fit: BoxFit.cover,
-            colorFilter: ColorFilter.mode(
-                Colors.white.withOpacity(0.8), BlendMode.dstATop),
           ),
         ),
-        constraints: const BoxConstraints.expand(),
         child: SafeArea(
           child: Column(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
-            crossAxisAlignment: CrossAxisAlignment.stretch,
-            children: <Widget>[
+            children: [
               Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
-                  IconButton(
+                  IconButtonWidget(
                     onPressed: () async {
                       var weatherData = await weather.getLocationWeather();
                       updateUI(weatherData);
                     },
-                    icon: const Icon(
-                      Icons.near_me,
-                      size: 50.0,
-                    ),
+                    icon: Icons.near_me_rounded,
                   ),
-                  TextButton(
+                  IconButtonWidget(
                     onPressed: () async {
                       var typedName = await Navigator.push(
                         context,
@@ -93,15 +86,12 @@ class _LocationScreenState extends State<LocationScreen> {
                         updateUI(weatherData);
                       }
                     },
-                    child: const Icon(
-                      Icons.location_city,
-                      size: 50.0,
-                    ),
+                    icon: Icons.location_city_rounded,
                   ),
                 ],
               ),
               Padding(
-                padding: const EdgeInsets.only(left: 15.0),
+                padding: const EdgeInsets.symmetric(horizontal: 15),
                 child: Row(
                   children: <Widget>[
                     Text(
@@ -116,7 +106,7 @@ class _LocationScreenState extends State<LocationScreen> {
                 ),
               ),
               Padding(
-                padding: const EdgeInsets.only(right: 15.0),
+                padding: const EdgeInsets.symmetric(horizontal: 15),
                 child: Text(
                   '$weatherMessage in $cityName',
                   textAlign: TextAlign.right,
@@ -126,6 +116,28 @@ class _LocationScreenState extends State<LocationScreen> {
             ],
           ),
         ),
+      ),
+    );
+  }
+}
+
+class IconButtonWidget extends StatelessWidget {
+  const IconButtonWidget({
+    super.key,
+    required this.onPressed,
+    required this.icon,
+  });
+
+  final Function() onPressed;
+  final IconData icon;
+
+  @override
+  Widget build(BuildContext context) {
+    return IconButton(
+      onPressed: onPressed,
+      icon: Icon(
+        icon,
+        size: 40.0,
       ),
     );
   }
