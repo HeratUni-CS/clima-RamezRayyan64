@@ -8,6 +8,8 @@ class LocationScreen extends StatefulWidget {
 
   final dynamic locationWeather;
 
+  static const String id = '/location_screen';
+
   @override
   State<LocationScreen> createState() => _LocationScreenState();
 }
@@ -64,13 +66,13 @@ class _LocationScreenState extends State<LocationScreen> {
             children: <Widget>[
               Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: <Widget>[
-                  TextButton(
+                children: [
+                  IconButton(
                     onPressed: () async {
                       var weatherData = await weather.getLocationWeather();
                       updateUI(weatherData);
                     },
-                    child: const Icon(
+                    icon: const Icon(
                       Icons.near_me,
                       size: 50.0,
                     ),

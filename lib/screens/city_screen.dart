@@ -4,6 +4,8 @@ import 'package:clima/utilities/constants.dart';
 class CityScreen extends StatefulWidget {
   const CityScreen({super.key});
 
+  static const String id = '/city_screen';
+
   @override
   State<CityScreen> createState() => _CityScreenState();
 }
